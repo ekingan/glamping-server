@@ -19,8 +19,8 @@ exports.signup = function(req, res, next) {
 	};
 	//see if a user with a the given email exists
 	User.findOne({ email: email} , function (err, existingUser) {
-		if (err) { 
-			return next(err); 
+		if (err) {
+			return next(err);
 		//if user not unique, return an error
 		} if (existingUser) {
 			return res.status(422).send({ error: "email in use"});
@@ -31,7 +31,7 @@ exports.signup = function(req, res, next) {
 
 
 		user.save(function(err){
-			if(err) { 
+			if(err) {
 				return next(err);
 			}
 		//respond to request by indicating user was created

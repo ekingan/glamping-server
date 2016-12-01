@@ -19,7 +19,7 @@ userSchema.pre('save', function(next) {
 		if (err) { return next(err); }
 		//hash password using the salt
 		bcrypt.hash(user.password, salt, null, function (err, hash) {
-			if (err) { return next(err); } 
+			if (err) { return next(err); }
 			//overwrite plain text password with encripted password
 		user.password = hash;
 		next();
@@ -27,10 +27,10 @@ userSchema.pre('save', function(next) {
 	});
 });
 
-userSchema.method.comparePasswords = function (canidatePassword, callback){
+userSchema.methods.comparePasswords = function (canidatePassword, callback){
 	bcrypt.compare(canidatePassword, this.password, function (err, isMatch) {
 		if (err) {
-		 return callback(err); 
+		 return callback(err);
 		 }
 
 		callback(null, isMatch);
